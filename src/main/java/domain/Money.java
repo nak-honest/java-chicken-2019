@@ -31,6 +31,10 @@ public class Money {
         return new Money(amount * count);
     }
 
+    public Money multiply(final double percent) {
+        return new Money((int) (amount * percent));
+    }
+
     @Override
     public String toString() {
         return Integer.toString(amount);
