@@ -12,7 +12,7 @@ public class OrderMenus {
         this.menus = new HashMap<>();
     }
 
-    public void add(final Menu menu, final int count) {
+    public void order(final Menu menu, final int count) {
         validateMenuCount(menu, count);
         menus.merge(menu, count, Integer::sum);
     }
