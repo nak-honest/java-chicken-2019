@@ -1,7 +1,7 @@
 package domain.table;
 
 import domain.Money;
-import domain.menu.Category;
+import domain.discount.OrderMenusDiscount;
 
 public class Table {
     private final int number;
@@ -16,12 +16,12 @@ public class Table {
         return this.number == number;
     }
 
-    public Money calculateTotalPrice() {
-        return orderMenus.calculateTotalPrice();
-    }
+    public Money payment(OrderMenusDiscount orderMenusDiscount) {
+        Money fee = orderMenus.calculateTotalPrice();
+        fee = fee.minus(orderMenusDiscount.calculateDiscountAmount(orderMenus));
+        orderMenus.clear();
 
-    public int countMenuByCategory(Category category) {
-        return orderMenus.countMenuByCategory(category);
+        return fee;
     }
 
     @Override
