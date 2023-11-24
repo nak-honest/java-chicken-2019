@@ -35,4 +35,12 @@ public class InputView {
 
         return menuNumber;
     }
+
+    public int inputMenuCount() {
+        System.out.println("## 메뉴의 수량을 입력하세요.");
+        int menuCount = scanner.nextInt();
+        System.out.println();
+
+        return menuCount;
+    }
 }
