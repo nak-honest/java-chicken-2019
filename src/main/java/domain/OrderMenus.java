@@ -26,4 +26,16 @@ public class OrderMenus {
     private int accumulatedMenuCount(final Menu menu) {
         return menus.getOrDefault(menu, 0);
     }
+
+    public Money calculateTotalPrice() {
+        return menus.entrySet().stream()
+                .map(entry -> calculateMenuPrice(entry.getKey(), entry.getValue()))
+                .reduce(Money.zero(), Money::add);
+    }
+
+    private Money calculateMenuPrice(final Menu menu, final int count) {
+        Money menuPrice = menu.getPrice();
+
+        return menuPrice.multiply(count);
+    }
 }
