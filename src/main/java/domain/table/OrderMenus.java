@@ -4,6 +4,7 @@ import domain.Money;
 import domain.menu.Category;
 import domain.menu.Menu;
 
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -52,5 +53,13 @@ public class OrderMenus {
 
     public void clear() {
         menus.clear();
+    }
+
+    public boolean hasOrder() {
+        return !menus.isEmpty();
+    }
+
+    public Map<Menu, Integer> getMenus() {
+        return Collections.unmodifiableMap(menus);
     }
 }

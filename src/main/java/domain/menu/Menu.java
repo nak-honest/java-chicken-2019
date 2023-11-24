@@ -25,10 +25,14 @@ public class Menu {
 
     @Override
     public String toString() {
-        return category + " " + number + " - " + name + " : " + price + "원";
+        return category + " " + number + " - " + name + " : " + price.getAmount() + "원";
     }
 
     public Money getPrice() {
         return price;
+    }
+
+    public String getName() {
+        return name;
     }
 }
