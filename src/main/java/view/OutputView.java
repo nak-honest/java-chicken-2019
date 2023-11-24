@@ -8,7 +8,8 @@ import java.util.List;
 public class OutputView {
     private static final String TOP_LINE = "┌ ─ ┐";
     private static final String TABLE_FORMAT = "| %s |";
-    private static final String BOTTOM_LINE = "└ ─ ┘";
+    private static final String BOTTOM_LINE_WITHOUT_ORDER = "└ ─ ┘";
+    private static final String BOTTOM_LINE_WITH_ORDER = "└ ₩ ┘";
 
     private final Writer writer;
 
@@ -21,6 +22,7 @@ public class OutputView {
         writer.writeLine("1 - 주문등록");
         writer.writeLine("2 - 결제하기");
         writer.writeLine("3 - 프로그램 종료");
+        writer.writeLine("");
     }
 
     public void printTables(final List<Table> tables) {
@@ -28,7 +30,6 @@ public class OutputView {
         final int size = tables.size();
         printLine(TOP_LINE, size);
         printTableNumbers(tables);
-        printLine(BOTTOM_LINE, size);
     }
 
     public void printMenus(final List<Menu> menus) {
@@ -39,7 +40,7 @@ public class OutputView {
 
     private void printLine(final String line, final int count) {
         for (int index = 0; index < count; index++) {
-            writer.writeLine(line);
+            writer.write(line);
         }
 
         writer.writeLine("");
@@ -50,5 +51,20 @@ public class OutputView {
             writer.write(String.format(TABLE_FORMAT, table));
         }
         writer.writeLine("");
+
+        for (final Table table : tables) {
+            printBottomLine(table);
+        }
+        writer.writeLine("");
+
+    }
+
+    private void printBottomLine(final Table table) {
+        if (table.hasOrder()) {
+            writer.write(BOTTOM_LINE_WITH_ORDER);
+            return;
+        }
+
+        writer.write(BOTTOM_LINE_WITHOUT_ORDER);
     }
 }
