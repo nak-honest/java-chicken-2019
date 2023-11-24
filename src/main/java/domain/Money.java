@@ -27,6 +27,10 @@ public class Money {
         return new Money(amount + money.amount);
     }
 
+    public Money minus(final Money money) {
+        return new Money(amount - money.amount);
+    }
+
     public Money multiply(final int count) {
         return new Money(amount * count);
     }
