@@ -43,4 +43,12 @@ public class InputView {
 
         return menuCount;
     }
+
+    public int inputPaymentMethod() {
+        System.out.println("## 신용 카드는 1번, 현금은 2번");
+        int paymentMethod = scanner.nextInt();
+        System.out.println();
+
+        return paymentMethod;
+    }
 }
