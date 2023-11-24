@@ -27,4 +27,12 @@ public class InputView {
 
         return tableNumber;
     }
+
+    public int inputMenuNumber() {
+        System.out.println("## 등록할 메뉴를 선택하세요.");
+        int menuNumber = scanner.nextInt();
+        System.out.println();
+
+        return menuNumber;
+    }
 }
