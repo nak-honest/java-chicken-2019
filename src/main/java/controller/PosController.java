@@ -8,6 +8,7 @@ import domain.payment.PaymentMethod;
 import domain.table.Table;
 import domain.table.TableRepository;
 import service.PaymentService;
+import util.ExceptionRetryHandler;
 import view.InputView;
 import view.OutputView;
 
@@ -52,10 +53,9 @@ public class PosController {
     }
 
     private void order() {
-        List<Table> tables = TableRepository.tables();
-        Table table = selectTable();
-        Menu menu = selectMenu();
-        selectMenuCount(table, menu);
+        Table table = ExceptionRetryHandler.retryUntilValid(() -> selectTable());
+        Menu menu = ExceptionRetryHandler.retryUntilValid(() -> selectMenu());
+        ExceptionRetryHandler.retryUntilValid(() -> selectMenuCount(table, menu));
     }
 
     private Table selectTable() {
@@ -78,11 +78,11 @@ public class PosController {
     }
 
     private void payment() {
-        Table table = selectTable();
+        Table table = ExceptionRetryHandler.retryUntilValid(() -> selectTable());
         outputView.printOrderTable(table.getOrderMenus());
         outputView.printPaymentTableNumber(table.getNumber());
 
-        PaymentMethod paymentMethod = selectPaymentMethod();
+        PaymentMethod paymentMethod = ExceptionRetryHandler.retryUntilValid(() -> selectPaymentMethod());
         outputView.printPayment(paymentService.pay(table, paymentMethod).getAmount());
     }
 
