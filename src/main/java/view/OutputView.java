@@ -85,4 +85,10 @@ public class OutputView {
     public void printPaymentTableNumber(final int number) {
         writer.writeLine(String.format("## %d번 테이블의 결제를 진행합니다.", number));
     }
+
+    public void printPayment(final int fee) {
+        writer.writeLine("## 최종 결제할 금액");
+        writer.writeLine(String.format("%d원", fee));
+        writer.writeLine("");
+    }
 }
