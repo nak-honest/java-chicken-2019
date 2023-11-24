@@ -17,6 +17,10 @@ public class Table {
         return orderMenus.calculateTotalPrice();
     }
 
+    public int countMenuByCategory(Category category) {
+        return orderMenus.countMenuByCategory(category);
+    }
+
     @Override
     public String toString() {
         return Integer.toString(number);

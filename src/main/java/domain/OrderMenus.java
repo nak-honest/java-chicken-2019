@@ -38,4 +38,11 @@ public class OrderMenus {
 
         return menuPrice.multiply(count);
     }
+
+    public int countMenuByCategory(Category category) {
+        return menus.entrySet().stream()
+                .filter(entry -> entry.getKey().isCategory(category))
+                .mapToInt(Map.Entry::getValue)
+                .sum();
+    }
 }

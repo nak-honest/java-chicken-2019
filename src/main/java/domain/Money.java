@@ -1,5 +1,7 @@
 package domain;
 
+import java.util.Objects;
+
 public class Money {
     private static final int MIN_AMOUNT = 0;
     public static final Money ZERO_AMOUNT = new Money(0);
@@ -32,5 +34,24 @@ public class Money {
     @Override
     public String toString() {
         return Integer.toString(amount);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+
+        if (!(o instanceof Money)) {
+            return false;
+        }
+
+        Money money = (Money) o;
+        return amount == money.amount;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(amount);
     }
 }

@@ -17,6 +17,10 @@ public class Menu {
         return this.number == number;
     }
 
+    public boolean isCategory(Category category) {
+        return this.category == category;
+    }
+
     @Override
     public String toString() {
         return category + " " + number + " - " + name + " : " + price + "원";
