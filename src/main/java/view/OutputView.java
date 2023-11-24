@@ -4,6 +4,7 @@ import domain.menu.Menu;
 import domain.table.Table;
 
 import java.util.List;
+import java.util.Map;
 
 public class OutputView {
     private static final String TOP_LINE = "┌ ─ ┐";
@@ -36,6 +37,8 @@ public class OutputView {
         for (final Menu menu : menus) {
             writer.writeLine(menu.toString());
         }
+
+        writer.writeLine("");
     }
 
     private void printLine(final String line, final int count) {
@@ -56,7 +59,7 @@ public class OutputView {
             printBottomLine(table);
         }
         writer.writeLine("");
-
+        writer.writeLine("");
     }
 
     private void printBottomLine(final Table table) {
@@ -66,5 +69,20 @@ public class OutputView {
         }
 
         writer.write(BOTTOM_LINE_WITHOUT_ORDER);
+    }
+
+    public void printOrderTable(final Map<Menu, Integer> orderTable) {
+        writer.writeLine("## 주문 내역");
+        writer.writeLine("메뉴 수량 금액");
+
+        orderTable.forEach((menu, count) ->
+            writer.writeLine(String.format("%s %d %d", menu.getName(), count, menu.getPrice().getAmount()))
+        );
+
+        writer.writeLine("");
+    }
+
+    public void printPaymentTableNumber(final int number) {
+        writer.writeLine(String.format("## %d번 테이블의 결제를 진행합니다.", number));
     }
 }
