@@ -1,4 +1,7 @@
-package domain;
+package domain.table;
+
+import domain.Money;
+import domain.menu.Category;
 
 public class Table {
     private final int number;

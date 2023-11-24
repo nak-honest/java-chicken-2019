@@ -1,4 +1,6 @@
-package domain;
+package domain.menu;
+
+import domain.Money;
 
 public class Menu {
     private final int number;

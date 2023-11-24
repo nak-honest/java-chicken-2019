@@ -1,4 +1,8 @@
-package domain;
+package domain.table;
+
+import domain.Money;
+import domain.menu.Category;
+import domain.menu.Menu;
 
 import java.util.HashMap;
 import java.util.Map;
