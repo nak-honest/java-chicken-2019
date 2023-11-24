@@ -14,11 +14,17 @@ public class InputView {
 
     public int inputCommandNumber() {
         System.out.println("## 원하는 기능을 선택하세요.");
-        return scanner.nextInt();
+        int command = scanner.nextInt();
+        System.out.println();
+
+        return command;
     }
 
     public int inputTableNumber() {
-        System.out.println("## 주문할 테이블을 선택하세요.");
-        return scanner.nextInt();
+        System.out.println("## 테이블을 선택하세요.");
+        int tableNumber = scanner.nextInt();
+        System.out.println();
+
+        return tableNumber;
     }
 }
